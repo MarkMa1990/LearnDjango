@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.template import Context
 from django.template.loader import get_template
-from django.contrib.auth.models import User
+from bookmarks.models import User
 from django.shortcuts import render_to_response
 
 def main_page(request):
