@@ -55,4 +55,4 @@ target/
 
 *.pyc
 
-mysite01/**/*.pyc
+#mysite01/**/*.pyc
