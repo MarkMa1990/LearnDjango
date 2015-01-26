@@ -2,15 +2,17 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, Http404
-from django.template import Context
+from django.template import Context, RequestContext
 from django.template.loader import get_template
 from bookmarks.models import User
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
 
 def main_page(request):
 	return render_to_response(
-		'main_page.html',
-		{ 'user': request.user}
+		'main_page.html', RequestContext(request)
+#		{ 'user': request.user}
 		)
 #	template = get_template('main_page.html')
 #	variables = Context( {
@@ -30,7 +32,7 @@ def user_page(request, username):
 
 	bookmarks = user.bookmark_set.all()
 	template = get_template('user_page.html')
-	variables = Context({
+	variables = RequestContext(request, {
 
 		'username' : username,
 		'bookmarks': bookmarks,
@@ -38,3 +40,7 @@ def user_page(request, username):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
+
+def logout_page(request):
+	logout(request)
+	return HttpResponseRedirect('/')
