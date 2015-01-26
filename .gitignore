@@ -58,3 +58,4 @@ target/
 #mysite01/**/*.pyc
 
 *.sqlite3
+mysite01/bookmarks/migrations/*.py
