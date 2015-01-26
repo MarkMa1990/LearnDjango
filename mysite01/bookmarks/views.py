@@ -6,6 +6,8 @@ from django.template import Context
 from django.template.loader import get_template
 from bookmarks.models import User
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
 
 def main_page(request):
 	return render_to_response(
@@ -38,3 +40,7 @@ def user_page(request, username):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
+
+def logout_page(request):
+	logout(request)
+	return HttpResponseRedirect('/')

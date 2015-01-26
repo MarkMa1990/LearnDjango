@@ -56,3 +56,5 @@ target/
 *.pyc
 
 #mysite01/**/*.pyc
+
+*.sqlite3
