@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from django.template import Context, RequestContext
 from django.template.loader import get_template
 from bookmarks.models import *
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from bookmarks.forms import *
@@ -28,21 +28,25 @@ def main_page(request):
 #	return HttpResponse(output)
 
 def user_page(request, username):
-	try:
-		user = User.objects.get(username=username)
-	except:
-		raise Http404('Requseted user not found!')
-
-	bookmarks = user.bookmark_set.all()
-	template = get_template('user_page.html')
+#	try:
+#		user = User.objects.get(username=username)
+#	except:
+#		raise Http404('Requseted user not found!')
+#
+#	bookmarks = user.bookmark_set.all()
+#	template = get_template('user_page.html')
+	user = get_object_or_404(User, username=username)
+	bookmarks = user.bookmark_set.order_by('-id')
 	variables = RequestContext(request, {
 
 		'username' : username,
 		'bookmarks': bookmarks,
+		'show_tags': True,
 
 		})
-	output = template.render(variables)
-	return HttpResponse(output)
+#	output = template.render(variables)
+#	return HttpResponse(output)
+	return render_to_response('user_page.html', variables)
 
 def logout_page(request):
 	logout(request)
