@@ -7,16 +7,14 @@
 				<br />
 				{% if show_tags %}
 					Tags:
-					{% if bookmark.tag_set.all %}
-						<ul class="tags">
-							{% for tag in bookmark.tag_set.all %}
-								<li>{{ tag.name }}</li>
-							{% endfor %}
-						</ul>
-					{% else %}
-						None.
-					{% endif %}
-					<br />
+					<ul class="tags">
+					{% for tag in bookmark.tag_set.all %}
+					<li>
+					<a href="/tag/{{ tag.name }}/">{{ tag.name }}</a>
+					</li>
+					{% endfor %}
+					</ul>
+				<br />
 				{% endif %}
 				{% if show_user %}
 					Posted by:

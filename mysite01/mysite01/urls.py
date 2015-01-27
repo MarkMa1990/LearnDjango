@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': site_media}),
     url(r'^register/$', register_page),
     url(r'^register/success/$', TemplateView.as_view(template_name='registration/register_success.html')),
+    url(r'^tag/([^\s]+)/$', tag_page),
 
     # Account management
     url(r'^save/$', bookmark_save_page),
