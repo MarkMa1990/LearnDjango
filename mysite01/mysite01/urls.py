@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^register/$', register_page),
     url(r'^register/success/$', TemplateView.as_view(template_name='registration/register_success.html')),
     url(r'^tag/([^\s]+)/$', tag_page),
+    url(r'^tag/$', tag_cloud_page),
 
     # Account management
     url(r'^save/$', bookmark_save_page),
