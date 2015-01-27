@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.template import Context, RequestContext
 from django.template.loader import get_template
-from bookmarks.models import User
+from bookmarks.models import *
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
@@ -67,3 +67,40 @@ def register_page(request):
 		variables
 		
 		)
+
+def bookmark_save_page(request):
+	if request.method == 'POST':
+		form = BookmarkSaveForm(request.POST)
+		if form.is_valid():
+			# Create or get link.
+			link, dummy = Link.objects.get_or_create(
+				url= form.cleaned_data['url']
+				)
+			# Create or get bookmark.
+			bookmark, created= Bookmark.objects.get_or_create(
+				user=request.user,
+				link=link
+				)
+			# Update bookmark title.
+			bookmark.title = form.cleaned_data['title']
+			# If the bookmark is being updated, clear old tag list.
+			if not created:
+				bookmark.tag_set.clear()
+			# Create new tag list.
+			tag_names = form.cleaned_data['tags'].split()
+			for tag_name in tag_names:
+				tag, dummy = Tag.objects.get_or_create(name=tag_name)
+				bookmark.tag_set.add(tag)
+			# Save bookmark to database.
+			bookmark.save()
+			return HttpResponseRedirect(
+				'/user/%s/' % request.user.username
+				)
+	else:
+		form = BookmarkSaveForm()
+	variables = RequestContext(request, {
+		'form': form
+		})
+	return render_to_response('bookmark_save.html', variables)
+
+
