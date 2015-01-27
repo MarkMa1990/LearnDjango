@@ -13,10 +13,10 @@ padding: 0;
 }
 
 #tag-cloud {
-text-align: center;
+	text-align: center;
 }
 #tag-cloud a {
-margin: 0 0.2em;
+	margin: 0 0.2em;
 }
 .tag-cloud-0 { font-size: 100%; }
 .tag-cloud-1 { font-size: 120%; }
