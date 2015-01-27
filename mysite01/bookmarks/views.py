@@ -51,12 +51,12 @@ def register_page(request):
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			user = User.objects.create_user(
-				username = form.clean_data['username'],
-				password = form.clean_data['password'],
-				email = form.clean_data['email']
+				username = form.cleaned_data['username'],
+				password = form.cleaned_data['password2'],
+				email = form.cleaned_data['email']
 
 				)
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('/register/success/')
 	else:
 		form = RegistrationForm()
 	variables = RequestContext(request, {
