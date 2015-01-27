@@ -10,6 +10,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from bookmarks.forms import *
 
+from django.contrib.auth.decorators import login_required
+
 def main_page(request):
 	return render_to_response(
 		'main_page.html', RequestContext(request)
@@ -68,6 +70,7 @@ def register_page(request):
 		
 		)
 
+@login_required(login_url='/login/')
 def bookmark_save_page(request):
 	if request.method == 'POST':
 		form = BookmarkSaveForm(request.POST)
