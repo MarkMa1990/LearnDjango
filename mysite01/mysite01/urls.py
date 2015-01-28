@@ -16,6 +16,7 @@ urlpatterns = [
     # Browsing
     url(r'^$', main_page),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^search/$', search_page),
 
     # Session management
     url(r'^user/(\w+)/$', user_page),
