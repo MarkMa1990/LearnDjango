@@ -164,4 +164,7 @@ def search_page(request):
 		'show_tags': True,
 		'show_user': True,
 		})
-	return render_to_response('search.html', variables)
+	if request.GET.has_key('ajax'):
+		return render_to_response('bookmark_list.html', variables)
+	else:
+		return render_to_response('search.html', variables)
