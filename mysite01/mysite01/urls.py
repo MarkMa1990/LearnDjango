@@ -36,5 +36,7 @@ urlpatterns = [
     # Ajax
     url(r'^ajax/tag/autocomplete/$', ajax_tag_autocomplete),
 
+    # Friends
+    url(r'^friends/(\w+)/$', friends_page),
 
 ]
