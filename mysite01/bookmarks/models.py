@@ -11,12 +11,13 @@ class Link(models.Model):
 	def __str__(self):
 		return self.url
 
+
 class Bookmark(models.Model):
 	title 	 = models.CharField(max_length=200)
 	user 	 = models.ForeignKey(User)
 	link 	 = models.ForeignKey(Link)
 	def __str__(self):
-		return '%s, %s' % (self.user.username, self.link1.url)
+		return '%s, %s' % (self.user.username, self.link.url)
 
 class Tag(models.Model):
 	name = models.CharField(max_length=64, unique=True)
@@ -30,4 +31,4 @@ class SharedBookmark(models.Model):
 	votes = models.IntegerField(default=1)
 	users_voted = models.ManyToManyField(User)
 	def __str__(self):
-		return '%s, %s' % self.bookmark, self.votes
+		return '%s, %s' % (self.bookmark, self.votes)
