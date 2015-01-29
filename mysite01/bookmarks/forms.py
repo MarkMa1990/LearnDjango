@@ -51,7 +51,7 @@ class BookmarkSaveForm(forms.Form):
 		required=False,
 		widget=forms.TextInput(attrs={'size':64})
 		)
-	share = form.BooleanField(
+	share = forms.BooleanField(
 		label = 'Share on the main page',
 		required = False,
 		)

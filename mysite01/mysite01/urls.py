@@ -30,6 +30,7 @@ urlpatterns = [
 
     # Account management
     url(r'^save/$', bookmark_save_page),
+    url(r'^vote/$', bookmark_vote_page),
 
     # Ajax
     url(r'^ajax/tag/autocomplete/$', ajax_tag_autocomplete),
