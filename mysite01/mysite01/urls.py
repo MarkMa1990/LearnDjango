@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^$', main_page),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^search/$', search_page),
+    url(r'^popular/$', popular_page),
 
     # Session management
     url(r'^user/(\w+)/$', user_page),
