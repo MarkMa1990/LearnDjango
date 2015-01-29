@@ -10,6 +10,7 @@ class BookmarkAdmin(admin.ModelAdmin):
 	list_display = ('title', 'user', 'link')
 	list_filter = ['user']
 	search_fields = ['title']
+	ordering = ('title',)
 
 class SharedBookmarkAdmin(admin.ModelAdmin):
 #	fields = ['bookmark','date','votes']
