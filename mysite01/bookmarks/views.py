@@ -234,6 +234,14 @@ def _bookmark_save(request, form):
 	for tag_name in tag_names:
 		tag, dummy = Tag.objects.get_or_create(name = tag_name)
 		bookmark.tag_set.add(tag)
+	# Share on the main page if requested
+	if form.cleaned_data['share']:
+		shared_bookmark, created = SharedBookmakr.objects.get_or_create(
+			bookmark=bookmark
+		)
+		if created:
+			shared_bookmark.users_voted.add(request.user)
+			shared_bookmark.save()
 	# Save bookmark to database and return it.
 	bookmark.save()
 	return bookmark
