@@ -72,14 +72,14 @@ def register_page(request):
 			return HttpResponseRedirect('/register/success/')
 	else:
 		form = RegistrationForm()
-	variables = RequestContext(request, {
-		'form' : form
-		})
-	return render_to_response(
-		'registration/register.html',
-		variables
-		
-		)
+		variables = RequestContext(request, {
+			'form' : form
+			})
+		return render_to_response(
+			'registration/register.html',
+			variables
+			
+			)
 
 @login_required(login_url='/login/')
 def bookmark_save_page(request):

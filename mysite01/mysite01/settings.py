@@ -64,14 +64,14 @@ WSGI_APPLICATION = 'mysite01.wsgi.application'
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'learndjango01',
-#        'USER':'root',
-#        'PASSWORD':'1',
-#        'HOST':'127.0.0.1',
-#        'PORT':'3306',
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_t1',
+        'USER':'root',
+        'PASSWORD':'1',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
